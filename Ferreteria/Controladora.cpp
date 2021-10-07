@@ -46,12 +46,12 @@ void Controladora::menuPrincipal() {
         cout << "\t\tBienvenido a la Ferreteria Martillo Feliz\n\n";
         cout << "1 - MENU ADMINISTRADOR\n";
         cout << "2 - MENU CLIENTE\n";
-        cout << "3 - SALIR\n";
+        cout << "77 - SALIR\n";
         cout << "Opcion digitada:   ";
         getline(cin, opc);
 
         try {
-            if (opc != "1" && opc != "2" && opc != "3") {
+            if (opc != "1" && opc != "2" && opc != "77") {
                 throw opc;
             }
 
@@ -64,7 +64,7 @@ void Controladora::menuPrincipal() {
                     menuCliente();
                     break;
 
-                case 3:
+                case 77:
                     delete sucursales;
                     sucursales = nullptr;
                     delete carritoCliente;
@@ -74,7 +74,7 @@ void Controladora::menuPrincipal() {
         } catch (...) {
         }
 
-    } while (opc != "77");
+    } while (true);
 }
 
 void Controladora::menuAdministrador() {
@@ -504,9 +504,21 @@ void Controladora::menuCliente() {
             switch (stoi(opc)) {
                 case 1:
                     cout << sucursales->toStringCliente();
-                    cout << "Digite el numero de la sucursal\n";
-                    getline(cin, id);
-                    subMenu(id);
+
+                    if (sucursales->getCabeza() == nullptr) {
+                        cin.get();
+                    }
+
+                    if (sucursales->getCabeza() != nullptr) {
+                        cout << "Digite el numero de la sucursal:   ";
+                        getline(cin, id);
+
+                        NodoSucursal *aux = sucursales->getSucursalEspecifica(id);
+
+                        if (aux != nullptr) {
+                            subMenu(aux);
+                        }
+                    }
                     break;
             }
         } catch (...) {
@@ -515,11 +527,10 @@ void Controladora::menuCliente() {
     } while (opc != "77");
 }
 
-void Controladora::subMenu(string id) {
+void Controladora::subMenu(NodoSucursal *aux) {
     string opc = "";
     int numero = 0;
-    NodoSucursal *aux = sucursales->getSucursalEspecifica(id);
-  
+
     do {
         fflush(stdin);
         system("clear");
@@ -537,10 +548,15 @@ void Controladora::subMenu(string id) {
 
             switch (stoi(opc)) {
                 case 1:
-                    cout<<aux->getDato()->toStringSeccionesCliente(*aux->getDato()->getSecciones());
-                    cout << "Digite el numero de la seccion\n";
-                    cin>>numero;
-                    cin.ignore();
+                    cout << aux->getDato()->toStringSeccionesCliente(*aux->getDato()->getSecciones()) << "\n";
+
+                    if (!aux->getDato()->getSecciones()->empty()) {
+                        cout << "Digite el numero de la seccion:   ";
+                        cin>>numero;
+                        cin.ignore();
+                    }
+
+                    cin.get();
                     break;
             }
         } catch (...) {

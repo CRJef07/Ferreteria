@@ -34,7 +34,11 @@ public:
     
 //-------------------------CLIENTE-----------------------------
     void menuCliente();
-    void subMenu(string);
+    
+    void subMenu(NodoSucursal *);
+    
+    
+    
 private:
     ListaSucursal *sucursales;
     PilaCarrito *carritoCliente;

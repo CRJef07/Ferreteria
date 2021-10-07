@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Proyecto-Estructuras
+PROJECTNAME=Ferreteria
 
 # Active Configuration
 DEFAULTCONF=Debug

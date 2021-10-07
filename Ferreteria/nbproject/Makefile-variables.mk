@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=proyecto-estructuras
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/proyecto-estructuras
+CND_ARTIFACT_NAME_Debug=ferreteria
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/ferreteria
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=proyecto-estructuras.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/proyecto-estructuras.tar
+CND_PACKAGE_NAME_Debug=ferreteria.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/ferreteria.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=proyecto-estructuras
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/proyecto-estructuras
+CND_ARTIFACT_NAME_Release=ferreteria
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/ferreteria
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=proyecto-estructuras.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/proyecto-estructuras.tar
+CND_PACKAGE_NAME_Release=ferreteria.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/ferreteria.tar
 #
 # include compiler specific variables
 #
