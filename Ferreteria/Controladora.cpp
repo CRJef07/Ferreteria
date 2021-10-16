@@ -535,7 +535,7 @@ void Controladora::subMenu(NodoSucursal *aux) {
         fflush(stdin);
         system("clear");
 
-        cout << "\t\tMenu de seccion\n\n";
+        cout << "\t\tMenu de secciones\n\n";
         cout << "1 - Seleccione la seccion\n";
         cout << "77 - SALIR\n";
         cout << "Opcion digitada:   ";
@@ -554,8 +554,19 @@ void Controladora::subMenu(NodoSucursal *aux) {
                         cout << "Digite el numero de la seccion:   ";
                         cin>>numero;
                         cin.ignore();
-                    }
 
+                        ListaProducto *listaP = new ListaProducto();
+                        Seccion auxS(0, "", listaP);
+                        auxS = seccionEspecifica(*aux->getDato()->getSecciones(), numero);
+
+                        if (auxS.getNumero() != -1) {
+                            menuProductos(auxS);
+                            cin.get();
+                        } else {
+                            cout << "La seccion no se encuentra en esta sucursal\n";
+                        }
+
+                    }
                     cin.get();
                     break;
             }
@@ -563,4 +574,90 @@ void Controladora::subMenu(NodoSucursal *aux) {
         }
 
     } while (opc != "77");
+}
+
+Seccion Controladora::seccionEspecifica(list<Seccion> lista, int numero) {
+    ListaProducto *listaP = new ListaProducto();
+    Seccion auxS(-1, "", listaP);
+
+    while (!lista.empty()) {
+
+        if (lista.front().getNumero() == numero) {
+            auxS = lista.front();
+            return auxS;
+        }
+        lista.pop_front();
+    }
+    return auxS;
+}
+
+void Controladora::menuProductos(Seccion secciones) {
+    string opc = "";
+    string producto = "";
+    int cantProductos = 0;
+    ListaProducto *lista = secciones.getProductos();
+    NodoProducto *auxNodo = lista->getCabeza();
+
+    do {
+        fflush(stdin);
+        system("clear");
+
+        cout << "\t\tMenu de seccion especifica\n\n";
+        cout << "1 - Seleccione el producto\n";
+        cout << "77 - SALIR\n";
+        cout << "Opcion digitada:   ";
+        getline(cin, opc);
+
+        try {
+            if (opc != "1" && opc != "2" && opc != "77") {
+                throw opc;
+            }
+
+            switch (stoi(opc)) {
+                case 1:
+                    cout << lista->toString();
+
+                    if (lista->getCabeza()->getDato()->getTop() != "") {
+                        cout << "Digite el producto que desee agregar al carrito" << endl;
+                        getline(cin, producto);
+                        cout << "Digite la cantidad de productos" << endl;
+                        cin>>cantProductos;
+                        productoEspecifico(producto, lista, cantProductos);
+                    } else {
+                        cout << "\tLa pila esta vacia\n";
+                    }
+                    cin.get();
+                    break;
+
+                case 2:
+                    cout << "\t\tCARRITO CLIENTE: \n" << carritoCliente->toString();
+                    cin.get();
+                    break;
+            }
+        } catch (...) {
+        }
+
+    } while (opc != "77");
+}
+
+void Controladora::productoEspecifico(string producto, ListaProducto *lista, int cantProducto) {
+    NodoProducto *cabeza = lista->getCabeza();
+    string productoCarrito = "";
+    int contador = 0;
+    while (cabeza != nullptr) {
+
+        if (cabeza->getDato()->getTop() == producto) {
+            for (int i = 0; i < cantProducto; i++) {
+                if (cabeza->getDato()->pilaVacia() == false) {
+                    //productoCarrito = cabeza->getDato()->eliminarTop();
+                    productoCarrito = cabeza->getDato()->getTop();
+                    cabeza->getDato()->Pop();
+                    carritoCliente->agregar(productoCarrito);
+                    contador++;
+                }
+            }
+            cout << productoCarrito << " se agrego al carrito " << contador << " veces" << endl;
+        }
+        cabeza = cabeza->getSig();
+    }
 }

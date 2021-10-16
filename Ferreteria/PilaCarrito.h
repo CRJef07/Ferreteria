@@ -15,7 +15,7 @@ public:
     string getTop();
     string toString();
 private:
-    stack<string> pila;
+    stack<string> pila; 
 };
 #endif /* PILACARRITO_H */
 

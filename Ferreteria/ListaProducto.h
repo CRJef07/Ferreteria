@@ -21,10 +21,12 @@ public:
     bool borrarPrimero();
 
     string toString();
+    
+    void eliminarPilaVacia();
 
 private:
     NodoProducto *cabeza;
-    NodoProducto * actual;
+    NodoProducto *actual;
 };
 
 #endif /* LISTAPRODUCTO_H */

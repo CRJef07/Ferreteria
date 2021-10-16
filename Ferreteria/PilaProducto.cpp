@@ -8,6 +8,12 @@ void PilaProducto::agregar(string p) {
 
 }
 
+void PilaProducto::Pop() {
+    if (!pila.empty()) {
+        pila.pop();
+    }
+}
+
 string PilaProducto::eliminarTop() {
     string eliminado = "";
     if (!pila.empty()) {
@@ -22,7 +28,10 @@ int PilaProducto::getTam() {
 }
 
 string PilaProducto::getTop() {
-    return pila.top();
+    if (!pila.empty()) {
+        return pila.top();
+    }
+    return "";
 }
 
 PilaProducto::~PilaProducto() {
@@ -44,3 +53,9 @@ string PilaProducto::toString() {
     return x.str();
 }
 
+bool PilaProducto::pilaVacia() {
+    if(pila.empty() == true){
+        return true;
+    }
+    return false;
+}

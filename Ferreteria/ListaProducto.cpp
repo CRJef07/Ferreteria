@@ -83,21 +83,6 @@ void ListaProducto::insertarUltimo(PilaProducto* dato) {
     }
 }
 
-/*void ListaProducto::borrarPrimero() {
-    actual = cabeza;
-    if (cabeza != nullptr) {
-        if (cabeza->getSig() == nullptr) {
-            delete cabeza;
-            cabeza = nullptr;
-        } else {
-            cabeza = actual->getSig();
-            cabeza->setAnt(nullptr);
-            delete actual;
-        }
-        cout << "\t\tSe elimino correctamente\n";
-    }
-}*/
-
 bool ListaProducto::borrarPrimero() {
     bool eliminado = false;
     actual = cabeza;
@@ -116,38 +101,36 @@ bool ListaProducto::borrarPrimero() {
     return eliminado;
 }
 
-/*string ListaProducto::toString() {
-    stringstream x;
-
-    NodoProducto *tempAux = cabeza;
-
-    if (tempAux == nullptr) {
-        x << "\t\tNo hay datos registrados\n";
-        return x.str();
-    }
-
-    while (tempAux != nullptr) {
-        x << tempAux->getDato()->toString() << "\n";
-        tempAux = tempAux->getSig();
-    }
-    return x.str();
-}*/
-
 string ListaProducto::toString() {
     stringstream x;
 
     NodoProducto *tempAux = cabeza;
 
     if (tempAux == nullptr) {
-        x << "\t\tNo hay datos registrados\n";
+        x << "\t\tNo hay productos registrados\n";
         return x.str();
     }
 
     while (tempAux != nullptr) {
-        x << "Producto: " << tempAux->getDato()->getTop() << " - ";
-        x << "Cantidad: " << tempAux->getDato()->getTam() << "\n";
+        if (tempAux->getDato()->getTop() != "") {
+            x << "Producto: " << tempAux->getDato()->getTop() << " - ";
+            x << "Cantidad: " << tempAux->getDato()->getTam() << "\n";
+        }
         tempAux = tempAux->getSig();
     }
 
     return x.str();
+}
+
+void ListaProducto::eliminarPilaVacia() {
+    NodoProducto *aux = cabeza;
+
+    while (aux != nullptr) {
+
+        if (aux->getDato()->pilaVacia() == true) {
+            delete aux->getDato();
+        }
+
+        aux = aux->getSig();
+    }
 }

@@ -17,7 +17,7 @@ public:
     string toString();
 
     void menuPrincipal();
-//-------------------------ADMI-----------------------------
+    //-------------------------ADMI-----------------------------
     void menuAdministrador();
 
     void editarSucursal(string);
@@ -31,14 +31,19 @@ public:
     void editarListaSecciones(NodoSucursal*);
 
     void agregarSeccion(int, string, list<Seccion> *);
-    
-//-------------------------CLIENTE-----------------------------
+
+    //-------------------------CLIENTE-----------------------------
+
+    Seccion seccionEspecifica(list<Seccion>, int);
+
     void menuCliente();
-    
+
     void subMenu(NodoSucursal *);
-    
-    
-    
+
+    void menuProductos(Seccion);
+
+    void productoEspecifico(string, ListaProducto*, int);
+
 private:
     ListaSucursal *sucursales;
     PilaCarrito *carritoCliente;

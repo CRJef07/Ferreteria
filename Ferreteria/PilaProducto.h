@@ -11,9 +11,11 @@ public:
     virtual ~PilaProducto();
     void agregar(string);
     string eliminarTop();
+    void Pop();
     int getTam();
     string getTop();
     string toString();
+    bool pilaVacia();
 private:
     stack<string> pila;
 };
