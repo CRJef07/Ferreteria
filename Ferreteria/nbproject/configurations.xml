@@ -7,7 +7,6 @@
       <itemPath>Cliente.h</itemPath>
       <itemPath>ColaCliente.h</itemPath>
       <itemPath>Controladora.h</itemPath>
-      <itemPath>Interfaz.h</itemPath>
       <itemPath>ListaProducto.h</itemPath>
       <itemPath>ListaSucursal.h</itemPath>
       <itemPath>NodoProducto.h</itemPath>
@@ -28,7 +27,6 @@
       <itemPath>Cliente.cpp</itemPath>
       <itemPath>ColaCliente.cpp</itemPath>
       <itemPath>Controladora.cpp</itemPath>
-      <itemPath>Interfaz.cpp</itemPath>
       <itemPath>ListaProducto.cpp</itemPath>
       <itemPath>ListaSucursal.cpp</itemPath>
       <itemPath>NodoProducto.cpp</itemPath>
@@ -73,10 +71,6 @@
       <item path="Controladora.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Controladora.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Interfaz.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaProducto.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -148,10 +142,6 @@
       <item path="Controladora.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Controladora.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Interfaz.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Interfaz.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaProducto.cpp" ex="false" tool="1" flavor2="0">
       </item>

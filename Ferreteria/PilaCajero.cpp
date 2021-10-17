@@ -22,9 +22,18 @@ string PilaCajero::toString() {
     pila2 = pila;
     int tam = pila2.size();
     stringstream x;
+    SYSTEMTIME a;
+    GetLocalTime(&a);
     if (pila2.empty()) {
         x << " la pila esta vacia\n";
     } else {
+        x << "Fecha: " << a.wDay << "/";
+        x << a.wMonth << "/";
+        x << a.wYear << "\n";
+
+        x << "Hora: " << a.wHour << ":";
+        x << a.wMinute << "\n";
+        ;
         for (int i = 0; i < tam; i += 1) {
             x << pila2.top() << "\n";
             pila2.pop();
@@ -45,3 +54,12 @@ string PilaCajero::getTop() {
 PilaCajero::~PilaCajero() {
 }
 
+void PilaCajero::pop() {
+    if (!pila.empty()) {
+        pila.pop();
+    }
+}
+
+bool PilaCajero::pilaVacia() {
+    return pila.empty();
+}

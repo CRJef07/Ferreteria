@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <stack>
+#include <windows.h>
 using namespace std;
 
 class PilaCajero {
@@ -14,6 +15,8 @@ public:
     int getTam();
     string getTop();
     string toString();
+    void pop();
+    bool pilaVacia();
 private:
     stack<string> pila;
 };

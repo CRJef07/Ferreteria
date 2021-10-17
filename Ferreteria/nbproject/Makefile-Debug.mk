@@ -38,7 +38,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Cliente.o \
 	${OBJECTDIR}/ColaCliente.o \
 	${OBJECTDIR}/Controladora.o \
-	${OBJECTDIR}/Interfaz.o \
 	${OBJECTDIR}/ListaProducto.o \
 	${OBJECTDIR}/ListaSucursal.o \
 	${OBJECTDIR}/NodoProducto.o \
@@ -89,11 +88,6 @@ ${OBJECTDIR}/Controladora.o: Controladora.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Controladora.o Controladora.cpp
-
-${OBJECTDIR}/Interfaz.o: Interfaz.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Interfaz.o Interfaz.cpp
 
 ${OBJECTDIR}/ListaProducto.o: ListaProducto.cpp
 	${MKDIR} -p ${OBJECTDIR}

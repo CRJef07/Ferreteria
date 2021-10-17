@@ -16,7 +16,6 @@ ListaProducto::~ListaProducto() {
 
 NodoProducto * ListaProducto::getCabeza() {
     return cabeza;
-
 }
 
 NodoProducto * ListaProducto::getUltimo() {
@@ -122,15 +121,26 @@ string ListaProducto::toString() {
     return x.str();
 }
 
-void ListaProducto::eliminarPilaVacia() {
+int ListaProducto::getTam() {
     NodoProducto *aux = cabeza;
+    int contador = 0;
 
     while (aux != nullptr) {
-
-        if (aux->getDato()->pilaVacia() == true) {
-            delete aux->getDato();
-        }
-
+        contador++;
         aux = aux->getSig();
     }
+    return contador;
+}
+
+int ListaProducto::cantPilasVacias() {
+    NodoProducto *aux = cabeza;
+    int contador = 0;
+
+    while (aux != nullptr) {
+        if (aux->getDato()->pilaVacia() == true) {
+            contador++;
+        }
+        aux = aux->getSig();
+    }
+    return contador;
 }

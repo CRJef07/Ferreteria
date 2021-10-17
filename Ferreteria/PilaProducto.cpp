@@ -5,7 +5,6 @@ PilaProducto::PilaProducto() : pila(stack <string>()) {
 
 void PilaProducto::agregar(string p) {
     pila.push(p);
-
 }
 
 void PilaProducto::Pop() {
@@ -54,7 +53,7 @@ string PilaProducto::toString() {
 }
 
 bool PilaProducto::pilaVacia() {
-    if(pila.empty() == true){
+    if (pila.empty() == true) {
         return true;
     }
     return false;

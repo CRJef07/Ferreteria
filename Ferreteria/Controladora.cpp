@@ -4,6 +4,10 @@ Controladora::Controladora(ListaSucursal * sucursales, PilaCarrito * carritoClie
 }
 
 Controladora::~Controladora() {
+    delete sucursales;
+    sucursales = nullptr;
+    delete carritoCliente;
+    carritoCliente = nullptr;
 }
 
 void Controladora::setSucursales(ListaSucursal* sucursales) {
@@ -34,9 +38,77 @@ string Controladora::toString() {
     return x.str();
 }
 
+void Controladora::agregarSucursales(string numero, string ubicacion) {
+    ColaCliente *colaCliente = new ColaCliente();
+    PilaCarrito *pilaCLA1 = new PilaCarrito();
+    pilaCLA1->agregar("Puerta");
+    PilaCarrito *pilaCLA2 = new PilaCarrito();
+    pilaCLA2->agregar("Inodoro");
+    pilaCLA2->agregar("Lavamanos");
+    pilaCLA2->agregar("Espejo Grande");
+    Cliente *clA1 = new Cliente(pilaCLA1);
+    Cliente *clA2 = new Cliente(pilaCLA2);
+    colaCliente->agregar(clA1);
+    colaCliente->agregar(clA2);
+    PilaCajero *cajero = new PilaCajero();
+
+    list<Seccion> *secciones = new list<Seccion>;
+    ListaProducto *lista = new ListaProducto();
+    ListaProducto *lista2 = new ListaProducto();
+    ListaProducto *lista3 = new ListaProducto();
+    PilaProducto * pila = new PilaProducto();
+    PilaProducto * pila2 = new PilaProducto();
+    PilaProducto * pila3 = new PilaProducto();
+    PilaProducto * pila4 = new PilaProducto();
+    PilaProducto * pila5 = new PilaProducto();
+    PilaProducto * pila6 = new PilaProducto();
+
+    for (auto i = 0; i < 5; i++) {
+        pila->agregar("Martillo");
+    }
+
+    for (auto i = 0; i < 5; i++) {
+        pila2->agregar("Clavos");
+    }
+
+    for (auto i = 0; i < 5; i++) {
+        pila3->agregar("Pino");
+    }
+
+    for (auto i = 0; i < 5; i++) {
+        pila4->agregar("Roble");
+    }
+
+
+    for (auto i = 0; i < 5; i++) {
+        pila5->agregar("Lavamanos Elegante");
+    }
+
+
+    for (auto i = 0; i < 5; i++) {
+        pila6->agregar("Inodoro Elegante");
+    }
+    lista->insertarPrimero(pila);
+    lista->insertarPrimero(pila2);
+    lista2->insertarPrimero(pila3);
+    lista2->insertarPrimero(pila4);
+    lista3->insertarPrimero(pila5);
+    lista3->insertarPrimero(pila6);
+    Seccion sec(1, "Herramientas", lista);
+    Seccion sec2(2, "Maderas", lista2);
+    Seccion sec3(3, "Bannos", lista3);
+    secciones->push_front(sec);
+    secciones->push_front(sec2);
+    secciones->push_front(sec3);
+
+    Sucursal *suc = new Sucursal(numero, ubicacion, cajero, colaCliente, secciones);
+    sucursales->agregar(suc);
+}
+
 //INTERFAZ
 
 void Controladora::menuPrincipal() {
+    agregarSucursales("1", "Alajuela");
     string opc = "";
 
     do {
@@ -63,18 +135,11 @@ void Controladora::menuPrincipal() {
                 case 2:
                     menuCliente();
                     break;
-
-                case 77:
-                    delete sucursales;
-                    sucursales = nullptr;
-                    delete carritoCliente;
-                    carritoCliente = nullptr;
-                    exit(0);
             }
         } catch (...) {
         }
 
-    } while (true);
+    } while (opc != "77");
 }
 
 void Controladora::menuAdministrador() {
@@ -285,7 +350,6 @@ void Controladora::editarColaClientes(ColaCliente* cola) {
                     if (cola->colaVacia()) {
                         cout << "No hay cliente" << endl;
                     } else {
-                        //cout << cola->eliminarTop();
                         cout << cola->getTop().toString();
                         cola->pop();
                     }
@@ -537,12 +601,13 @@ void Controladora::subMenu(NodoSucursal *aux) {
 
         cout << "\t\tMenu de secciones\n\n";
         cout << "1 - Seleccione la seccion\n";
-        cout << "77 - SALIR\n";
+        cout << "2 - Ver carrito\n";
+        cout << "77 - SALIR Y PAGAR\n";
         cout << "Opcion digitada:   ";
         getline(cin, opc);
 
         try {
-            if (opc != "1" && opc != "77") {
+            if (opc != "1" && opc != "2" && opc != "77") {
                 throw opc;
             }
 
@@ -560,14 +625,31 @@ void Controladora::subMenu(NodoSucursal *aux) {
                         auxS = seccionEspecifica(*aux->getDato()->getSecciones(), numero);
 
                         if (auxS.getNumero() != -1) {
-                            menuProductos(auxS);
-                            cin.get();
+                            if (auxS.getProductos()->getTam() != auxS.getProductos()->cantPilasVacias()) {
+                                menuProductos(auxS);
+                            } else {
+                                cout << "\tLo sentimos, la seccion no tiene productos en este momento\n";
+                                cin.get();
+                            }
                         } else {
                             cout << "La seccion no se encuentra en esta sucursal\n";
+                            cin.get();
                         }
-
                     }
+                    break;
+
+                case 2:
+                    cout << "\t\tCARRITO CLIENTE: \n" << carritoCliente->toString();
                     cin.get();
+                    break;
+
+                case 77:
+                    if (carritoCliente->getTam() > 0) {
+                        pagar(aux);
+                    } else {
+                        cout << "El carrito esta vacio, vuelva pronto" << endl;
+                        cin.get();
+                    }
                     break;
             }
         } catch (...) {
@@ -596,7 +678,6 @@ void Controladora::menuProductos(Seccion secciones) {
     string producto = "";
     int cantProductos = 0;
     ListaProducto *lista = secciones.getProductos();
-    NodoProducto *auxNodo = lista->getCabeza();
 
     do {
         fflush(stdin);
@@ -604,6 +685,7 @@ void Controladora::menuProductos(Seccion secciones) {
 
         cout << "\t\tMenu de seccion especifica\n\n";
         cout << "1 - Seleccione el producto\n";
+        cout << "2 - Ver carrito\n";
         cout << "77 - SALIR\n";
         cout << "Opcion digitada:   ";
         getline(cin, opc);
@@ -617,16 +699,19 @@ void Controladora::menuProductos(Seccion secciones) {
                 case 1:
                     cout << lista->toString();
 
-                    if (lista->getCabeza()->getDato()->getTop() != "") {
+                    if (lista->getTam() != lista->cantPilasVacias()) {
                         cout << "Digite el producto que desee agregar al carrito" << endl;
                         getline(cin, producto);
-                        cout << "Digite la cantidad de productos" << endl;
-                        cin>>cantProductos;
-                        productoEspecifico(producto, lista, cantProductos);
+                        if (producto != "") {
+                            cout << "Digite la cantidad de productos" << endl;
+                            cin>>cantProductos;
+                            productoEspecifico(producto, lista, cantProductos);
+                            cin.get();
+                        }
                     } else {
-                        cout << "\tLa pila esta vacia\n";
+                        cout << "YA NO HAY PRODUCTOS\n";
+                        cin.get();
                     }
-                    cin.get();
                     break;
 
                 case 2:
@@ -649,7 +734,6 @@ void Controladora::productoEspecifico(string producto, ListaProducto *lista, int
         if (cabeza->getDato()->getTop() == producto) {
             for (int i = 0; i < cantProducto; i++) {
                 if (cabeza->getDato()->pilaVacia() == false) {
-                    //productoCarrito = cabeza->getDato()->eliminarTop();
                     productoCarrito = cabeza->getDato()->getTop();
                     cabeza->getDato()->Pop();
                     carritoCliente->agregar(productoCarrito);
@@ -657,7 +741,50 @@ void Controladora::productoEspecifico(string producto, ListaProducto *lista, int
                 }
             }
             cout << productoCarrito << " se agrego al carrito " << contador << " veces" << endl;
+            cin.get();
         }
         cabeza = cabeza->getSig();
+
+    }
+}
+
+void Controladora::pagar(NodoSucursal *aux) {
+    int contador = 1;
+    PilaCajero *cajero = aux->getDato()->getCajero();
+    while (aux->getDato()->getClientes()->colaVacia() == false) {
+        pagarColaClientes(cajero, aux->getDato()->getClientes()->getTop(), contador);
+        aux->getDato()->getClientes()->pop();
+        limpiarCajero(cajero);
+        contador++;
+    }
+    pagarUsuario(cajero);
+    limpiarCajero(cajero);
+}
+
+void Controladora::pagarColaClientes(PilaCajero *aux, Cliente cliente, int numeroUsuario) {
+
+    while (cliente.getCarrito()->pilaVacia() == false) {
+        aux->agregar(cliente.getCarrito()->getTop());
+        cliente.getCarrito()->pop();
+    }
+
+    cout << "\tFACTURA DEL CLIENTE " << numeroUsuario << ": " << endl << aux->toString();
+    cin.get();
+
+}
+
+void Controladora::pagarUsuario(PilaCajero *aux) {
+    while (carritoCliente->pilaVacia() == false) {
+        aux->agregar(carritoCliente->getTop());
+        carritoCliente->pop();
+    }
+
+    cout << "\tFACTURA DEL USUARIO:" << endl << aux->toString();
+    cin.get();
+}
+
+void Controladora::limpiarCajero(PilaCajero* cajero) {
+    while (!cajero->pilaVacia()) {
+        cajero->pop();
     }
 }

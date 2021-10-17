@@ -34,19 +34,20 @@ string Seccion::toString() {
     stringstream x;
 
     x << "\tSeccion #" << numero << "\n";
-    
+
     x << "Nombre: " << nombre << "\n";
-    
-    x <<  productos->toString() ;
-    
+
+    x << productos->toString();
+
     return x.str();
 }
+
 string Seccion::toStringCliente() {
     stringstream x;
 
     x << "\tSeccion #" << numero << "\n";
-    
+
     x << "Nombre: " << nombre << "\n";
-    
+
     return x.str();
 }

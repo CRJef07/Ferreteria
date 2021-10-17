@@ -17,15 +17,18 @@ public:
     void insertarPrimero(PilaProducto*);
 
     void insertarUltimo(PilaProducto*);
-  
+
     bool borrarPrimero();
 
     string toString();
-    
-    void eliminarPilaVacia();
+
+    int getTam();
+
+    int cantPilasVacias();
 
 private:
     NodoProducto *cabeza;
+
     NodoProducto *actual;
 };
 

@@ -15,6 +15,8 @@ public:
     PilaCarrito *getCarritoCliente();
 
     string toString();
+    
+    void agregarSucursales(string, string);
 
     void menuPrincipal();
     //-------------------------ADMI-----------------------------
@@ -43,6 +45,14 @@ public:
     void menuProductos(Seccion);
 
     void productoEspecifico(string, ListaProducto*, int);
+
+    void pagar(NodoSucursal*);
+
+    void pagarColaClientes(PilaCajero*, Cliente, int);
+
+    void pagarUsuario(PilaCajero*);
+
+    void limpiarCajero(PilaCajero*);
 
 private:
     ListaSucursal *sucursales;

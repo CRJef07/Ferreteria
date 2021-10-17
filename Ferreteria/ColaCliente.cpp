@@ -17,7 +17,7 @@ Cliente * ColaCliente::eliminarTop() {
     if (!cola.empty()) {
         *aux = cola.front();
         cola.pop();
-    }else{
+    } else {
         return nullptr;
     }
     return aux;
@@ -50,9 +50,10 @@ string ColaCliente::toString() {
     return x.str();
 }
 
-void ColaCliente::pop(){
+void ColaCliente::pop() {
     cola.pop();
 }
-bool ColaCliente::colaVacia(){
+
+bool ColaCliente::colaVacia() {
     return cola.empty();
 }

@@ -23,7 +23,7 @@ string PilaCarrito::toString() {
     int tam = pila2.size();
     stringstream x;
     if (pila2.empty()) {
-        x << " la pila esta vacia\n";
+        x << "El carrito esta vacio\n";
     } else {
         for (int i = 0; i < tam; i += 1) {
             x << pila2.top() << "\n";
@@ -45,3 +45,12 @@ int PilaCarrito::getTam() {
 PilaCarrito::~PilaCarrito() {
 }
 
+bool PilaCarrito::pilaVacia() {
+    return pila.empty();
+}
+
+void PilaCarrito::pop() {
+    if (!pila.empty()) {
+        pila.pop();
+    }
+}

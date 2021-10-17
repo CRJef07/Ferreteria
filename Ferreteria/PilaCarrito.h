@@ -14,8 +14,10 @@ public:
     int getTam();
     string getTop();
     string toString();
+    bool pilaVacia();
+    void pop();
 private:
-    stack<string> pila; 
+    stack<string> pila;
 };
 #endif /* PILACARRITO_H */
 

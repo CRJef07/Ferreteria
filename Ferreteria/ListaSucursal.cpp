@@ -100,9 +100,9 @@ string ListaSucursal::toStringCliente() {
         x << "\t\tNo hay ninguna sucursal registrada\n";
         return x.str();
     }
-    
+
     x << "\t\tSucursales: \n";
-    
+
     while (tempAux != nullptr) {
         x << tempAux->getDato()->toStringCliente() << "\n";
         tempAux = tempAux->getSig();

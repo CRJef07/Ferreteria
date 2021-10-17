@@ -15,7 +15,7 @@ public:
     int getNumero();
     string getNombre();
     ListaProducto * getProductos();
-    
+
     string toString();
     string toStringCliente();
 private:

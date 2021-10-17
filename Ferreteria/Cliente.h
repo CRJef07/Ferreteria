@@ -12,7 +12,7 @@ public:
 
     string toString();
 
-    virtual ~Cliente();    
+    virtual ~Cliente();
 private:
     PilaCarrito *carrito;
 };

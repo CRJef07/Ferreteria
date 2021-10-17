@@ -1,9 +1,5 @@
 #include "NodoProducto.h"
 
-/*
- Nodo::Nodo(Nodo* anterior, Estudiante* dato, Nodo* siguiente) : anterior(anterior), dato(dato), siguiente(siguiente) {
-}*/
-
 NodoProducto::NodoProducto(NodoProducto* ant, PilaProducto* dato, NodoProducto* sig) : ant(ant), dato(dato), sig(sig) {
 }
 

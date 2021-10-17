@@ -98,6 +98,7 @@ string Sucursal::toStringCliente() {
     x << "La ubicacion es: " << ubicacion << "\n";
     return x.str();
 }
+
 string Sucursal::toStringSeccionesCliente(list<Seccion> lista) {
     stringstream x;
 
