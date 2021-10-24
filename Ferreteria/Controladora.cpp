@@ -105,10 +105,12 @@ void Controladora::agregarSucursales(string numero, string ubicacion) {
     sucursales->agregar(suc);
 }
 
+
 //INTERFAZ
 
 void Controladora::menuPrincipal() {
     agregarSucursales("1", "Alajuela");
+    agregarSucursales("2", "Heredia");
     string opc = "";
 
     do {

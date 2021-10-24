@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>203</x>
+      <y>119</y>
+      <w>147</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Cliente
+--
+-PilaCarrito: *carrito
+--
++Cliente(PilaCarrito*)
++setCarrito(PilaCarrito*):void
++getCarrito():*PilaCarrito
++ toString():string
+~Cliente():virtual  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>203</x>
+      <y>336</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Cola Cliente
+--
+-queue&lt;Cliente&gt;: cola
+--
++ ColaCliente()
+~ColaCliente():virtual
++ agregar(Cliente*)::void
++ eliminarTop():Cliente 
++getTam():int 
++ getTop():Cliente
++pop():void
++colaVacia():bool
++toString():string </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>399</y>
+      <w>238</w>
+      <h>343</h>
+    </coordinates>
+    <panel_attributes>Controladora
+--
+-ListaSucursal:*sucursales
+-PilaCarrito:*carritoCliente
+--
+
++Controladora(ListaSucursal *, PilaCarrito *);
+~Controladora():virtual 
++setSucursales(ListaSucursal*):void
++setCarritoCliente(PilaCarrito*):void
++getSucursales():*ListaSucursal 
+ +getCarritoCliente():*PilaCarrito 
++toString():string
++menuPrincipal():void
++menuAdministrador():void
++editarSucursal(string):void
++editarCajeroSucursal(PilaCajero *):void
++editarColaClientes(ColaCliente*):void
++agregarCliente(ColaCliente*):void
++editarListaSecciones(NodoSucursal*):void
++agregarSeccion(int, string, list&lt;Seccion&gt; *):void
++seccionEspecifica(list&lt;Seccion&gt;, int):Seccion
++menuCliente():void
++subMenu(NodoSucursal *):void
++menuProductos(Seccion):void
++productoEspecifico(string, ListaProducto*, int):void
++pagar(NodoSucursal*):void
++pagarColaClientes(PilaCajero*,Cliente,int):void
++pagarUsuario(PilaCajero*):void
++limpiarCajero(PilaCajero*):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1036</x>
+      <y>147</y>
+      <w>175</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>Lista Producto
+--
+-NodoProducto:*cabeza
+-NodoProducto:*actual
+
+--
++ListaProducto()
+~ListaProducto():virtual 
++getCabeza():NodoProducto
++getUltimo():NodoProducto
++eliminarTop(string):bool
++insertarPrimero(PilaProducto*):void
++insertarUltimo(PilaProducto*):void
++ borrarPrimero():bool
++toString():string
++eliminarPilaVacia():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>427</x>
+      <y>427</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ListaSucursal
+--
+-NodoSucursal: *cabeza
+--
++ListaSucursal()
+~ListaSucursal():virtual
++getCabeza():NodoSucursal
++agregar(Sucursal*):void
++eliminar(string):bool
++toString()string
++toStringCliente():string
++getSucursalEspecifica(string):*NodoSucursal</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1022</x>
+      <y>392</y>
+      <w>147</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Nodo Producto
+--
+-NodoProducto :*sig
+-NodoProducto :*ant
+-PilaProducto :*dato
+--
++NodoProducto(NodoProducto*, PilaProducto*, NodoProducto*);
+~NodoProducto():virtual
++setSig(NodoProducto *):void
++getSig():NodoProducto
++setAnt(NodoProducto*):void
++ getAnt():NodoProducto
++setDato(PilaProducto*):void
++getDato():PilaProducto</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>665</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>NodoSucursal
+--
+-NodoSucursal:*sig
+-Sucursal:*dato
+--
++ NodoSucursal(Sucursal*)
+~NodoSucursal():virtual
++setSig(NodoSucursal *):void
++setDato(Sucursal *):void
++getSig():*NodoSucursal
+ +getDato():Sucursal</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>0</y>
+      <w>147</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Pila Cajero
+--
+-stack&lt;string&gt; :pila
+--
++PilaCajero()
+~PilaCajero():virtual
++agregar(string)void
++eliminarTop():string
++ getTam():int
++getTop():string
++toString():string
++pop():void
++pilaVacia():bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>126</y>
+      <w>105</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Pila Carrito
+--
+-stack&lt;string&gt;: pila
+--
++PilaCarrito()
++~PilaCarrito()
++agregar(string):void
++eliminarTop():string
++getTam():int
++getTop():string
++toString():string
++pilaVacia():bool
++pop():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1281</x>
+      <y>168</y>
+      <w>147</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Pila Producto
+--
+-stack&lt;string&gt;: pila
+--
++PilaProducto()
+~PilaProducto():virtual
++agregar(string):void
++eliminarTop():string
++Pop():void
++getTam():int
++getTop():string
++toString():string
++pilaVacia():bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>805</x>
+      <y>154</y>
+      <w>168</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>Seccion
+--
+-int :numero
+-string:nombre
+-productos:*ListaProducto 
+--
++Seccion(int, string, ListaProducto*)
+~Seccion():virtual
++setNumero(int):void
++setNombre(string):void
++setProductos(ListaProducto*):void
++getNumero():int
++getNombre():string
++getProductos():*ListaProducto 
++toString():string
++toStringCliente():string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>434</x>
+      <y>70</y>
+      <w>301</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>Sucursal
+--
+-string :id
+-string :ubicacion
+-PilaCajero :*cajero
+-ColaCliente :*clientes
+-list&lt;Seccion&gt; :*secciones
+--
++Sucursal(string, string, PilaCajero*, ColaCliente*, list&lt;Seccion&gt;*);
+~Sucursal():virtual
++setId(string):void
++setUbicacion(string):void
++setCajero(PilaCajero*):void
++setClientes(ColaCliente*):void
++setSecciones(list&lt;Seccion&gt;*):void
++getId():string
++getUbicacion():string
++getCajero():*PilaCajero
++getClientes():*ColaCliente
++getSecciones():*list&lt;Seccion&gt;
++toStringSecciones(list&lt;Seccion&gt;):string
++toString():string
++toStringCliente():string
++toStringSeccionesCliente(list&lt;Seccion&gt;):string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>497</x>
+      <y>329</y>
+      <w>77</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..n
+componen</panel_attributes>
+    <additional_attributes>10.0;140.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>203</y>
+      <w>91</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1..*</panel_attributes>
+    <additional_attributes>110.0;30.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>266</x>
+      <y>238</y>
+      <w>49</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..n
+espera</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>210</y>
+      <w>84</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1..*</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1204</x>
+      <y>217</y>
+      <w>91</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..n
+componen</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>98</x>
+      <y>105</y>
+      <w>119</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+m1=1
+m2=1..n
+usa</panel_attributes>
+    <additional_attributes>10.0;30.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>469</x>
+      <y>560</y>
+      <w>42</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..n
+m2=1
+tiene</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>462</y>
+      <w>112</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+tiene</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>105</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+m1=1
+m2=1
+tiene</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>343</x>
+      <y>63</y>
+      <w>105</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+compran </panel_attributes>
+    <additional_attributes>10.0;80.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1085</x>
+      <y>315</y>
+      <w>42</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1..n
+m2=1
+tiene</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
